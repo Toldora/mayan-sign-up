@@ -1,14 +1,7 @@
-import handlebars from 'handlebars';
 import queryString from 'query-string';
-import template from '@/partials/sign-up-form.hbs?raw';
 import { registerUser } from '@/api/registration';
-import { openModal } from '@/js/modal';
-// import { openLoginModal } from '@/js//login';
-import { globalState } from '@/js/global-state';
-import { setToLS } from '@/js/local-storage';
 import { AUTH_FIELD, ERROR_MESSAGES } from '@/const';
 
-const modalContentRef = document.querySelector('.js-app-modal-content');
 let formRef = null;
 
 const state = {
@@ -44,10 +37,6 @@ function onChangeAuthType() {
 
     formRef[AUTH_FIELD.tel].required = true;
     formRef[AUTH_FIELD.email].required = false;
-    // [formRef[AUTH_FIELD.email], formRef[AUTH_FIELD.password]]
-    // .forEach(ref => {
-    //   ref.required = false;
-    // });
   } else {
     formRef.classList.remove('sign-up-form__form--auth-with-tel');
     formRef.classList.add('sign-up-form__form--auth-with-email');
@@ -94,8 +83,6 @@ const onSubmit = async event => {
 
     const { data } = await registerUser(body);
 
-    setToLS('isAlreadyRegistered', true);
-
     searchString.state = data.autologinToken;
     const stringifiedSearch = queryString.stringify(searchString);
 
@@ -141,14 +128,7 @@ function togglePasswordVisibility() {
   state.isVisiblePassword = !state.isVisiblePassword;
 }
 
-export const openSignUpModal = ({ isBlocked } = {}) => {
-  const markup = handlebars.compile(template)({
-    wheelStage: globalState.wheelStage,
-  });
-
-  modalContentRef.innerHTML = '';
-  modalContentRef.insertAdjacentHTML('beforeend', markup);
-
+const init = () => {
   formRef = document.forms.signUp;
 
   [...formRef[AUTH_FIELD.authType]].forEach(radioRef => {
@@ -170,12 +150,6 @@ export const openSignUpModal = ({ isBlocked } = {}) => {
   [...hidePasswordBtnRefs].forEach(ref => {
     ref.addEventListener('click', togglePasswordVisibility);
   });
-
-  // const loginBtnRef = formRef.querySelector('.js-switch-to-login-btn');
-  // loginBtnRef.addEventListener('click', () => {
-  //   openLoginModal({ isBlocked });
-  //   state.isVisiblePassword = false;
-  // });
-
-  openModal({ isBlocked });
 };
+
+init();

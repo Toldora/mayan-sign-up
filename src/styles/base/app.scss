@@ -130,4 +130,39 @@ a {
 .app {
   width: 100%;
   height: vh(100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--app-overlay-bg);
+}
+
+.app__card {
+  width: 100%;
+  height: 100%;
+  background-color: var(--col-kuro-green);
+  color: var(--col-total-white);
+  font-family: var(--primary-font-family);
+  font-size: to-rem(14);
+  font-weight: 400;
+  line-height: 1.3;
+  overflow-y: auto;
+  overscroll-behavior: none;
+
+  @include respond-above(small) {
+    max-width: to-rem(400);
+    height: auto;
+    max-height: vh(95);
+    background-color: var(--col-gordons-green);
+    border-radius: to-rem(16);
+  }
+}
+
+.app__content {
+  width: 100%;
+  padding: to-rem(40) to-rem(32);
+
+  @include respond-above(small) {
+    height: 100%;
+    padding: to-rem(32);
+  }
 }

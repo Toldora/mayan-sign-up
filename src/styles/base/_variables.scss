@@ -15,7 +15,6 @@
   --col-dark-tone-ink: #{$col-dark-tone-ink};
   --col-tibetan-yellow: #{$col-tibetan-yellow};
   --col-nuclear-fallout: #{$col-nuclear-fallout};
-  --col-key-lime: #{$col-key-lime};
   --col-gordons-green: #{$col-gordons-green};
   --col-kuro-green: #{$col-kuro-green};
   --col-rich-olive: #{$col-rich-olive};
@@ -35,10 +34,7 @@
 
   // Text variables
   /* stylelint-disable max-line-length */
-  --primary-font-family: 'Montserrat', -apple-system, 'BlinkMacSystemFont',
-    'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue',
-    sans-serif;
-  --secondary-font-family: 'Ubuntu', -apple-system, 'BlinkMacSystemFont',
+  --primary-font-family: 'Ubuntu', -apple-system, 'BlinkMacSystemFont',
     'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue',
     sans-serif;
   /* stylelint-enable max-line-length */
@@ -82,14 +78,6 @@
 
   // Common
   --scrollbar-color: var(--primary-text-color);
-
-  // App navbar
-  --app-navbar-height: #{to-rem(70)};
-  --app-navbar-burger-btn-bg: rgba(#{$col-total-white-rgb}, 15%);
-
-  @include respond-above(tablet) {
-    --app-navbar-height: #{clamp(to-rem(80), vh(11.4), to-rem(100))};
-  }
 
   // App overlay
   --app-overlay-bg: rgba(#{$col-total-black-rgb}, 88%);
