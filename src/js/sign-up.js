@@ -6,16 +6,17 @@ let formRef = null;
 
 const state = {
   isValid: false,
-  isTelAuthType: true,
+  isTelAuthType: false,
   isVisiblePassword: false,
   isSubmitLoading: false,
 };
 
 const validate = () => {
-  const { email, submitBtn, agreeCheck } = formRef;
-  if (!email || !agreeCheck || !submitBtn) return;
+  const { email, password, submitBtn, agreeCheck } = formRef;
+  if (!email || !password || !agreeCheck || !submitBtn) return;
 
-  const isValid = email.validity.valid && agreeCheck.checked;
+  const isValid =
+    email.validity.valid && password.validity.valid && agreeCheck.checked;
 
   state.isValid = isValid;
 
@@ -26,29 +27,29 @@ const validate = () => {
   }
 };
 
-function onChangeAuthType() {
-  const isTel = this.value === AUTH_FIELD.tel;
+// function onChangeAuthType() {
+//   const isTel = this.value === AUTH_FIELD.tel;
 
-  state.isTelAuthType = isTel;
+//   state.isTelAuthType = isTel;
 
-  if (isTel) {
-    formRef.classList.remove('sign-up-form__form--auth-with-email');
-    formRef.classList.add('sign-up-form__form--auth-with-tel');
+//   if (isTel) {
+//     formRef.classList.remove('sign-up-form__form--auth-with-email');
+//     formRef.classList.add('sign-up-form__form--auth-with-tel');
 
-    formRef[AUTH_FIELD.tel].required = true;
-    formRef[AUTH_FIELD.email].required = false;
-  } else {
-    formRef.classList.remove('sign-up-form__form--auth-with-tel');
-    formRef.classList.add('sign-up-form__form--auth-with-email');
-    formRef[AUTH_FIELD.tel].required = false;
-    formRef[AUTH_FIELD.email].required = true;
-  }
+//     formRef[AUTH_FIELD.tel].required = true;
+//     formRef[AUTH_FIELD.email].required = false;
+//   } else {
+//     formRef.classList.remove('sign-up-form__form--auth-with-tel');
+//     formRef.classList.add('sign-up-form__form--auth-with-email');
+//     formRef[AUTH_FIELD.tel].required = false;
+//     formRef[AUTH_FIELD.email].required = true;
+//   }
 
-  const errorRef = formRef.querySelector('.js-auth-error');
-  errorRef.classList.remove('visible');
+//   const errorRef = formRef.querySelector('.js-auth-error');
+//   errorRef.classList.remove('visible');
 
-  validate();
-}
+//   validate();
+// }
 
 const onInput = () => {
   validate();
@@ -131,11 +132,11 @@ function togglePasswordVisibility() {
 const init = () => {
   formRef = document.forms.signUp;
 
-  [...formRef[AUTH_FIELD.authType]].forEach(radioRef => {
-    radioRef.addEventListener('change', onChangeAuthType);
-  });
+  // [...formRef[AUTH_FIELD.authType]].forEach(radioRef => {
+  //   radioRef.addEventListener('change', onChangeAuthType);
+  // });
   [
-    formRef[AUTH_FIELD.tel],
+    // formRef[AUTH_FIELD.tel],
     formRef[AUTH_FIELD.email],
     formRef[AUTH_FIELD.password],
   ].forEach(ref => {
