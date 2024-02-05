@@ -1,5 +1,6 @@
 import queryString from 'query-string';
 import { registerUser } from '@/api/registration';
+import generatePassword from '@/js/generate-password';
 import { AUTH_FIELD, ERROR_MESSAGES } from '@/const';
 
 let formRef = null;
