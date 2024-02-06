@@ -76,6 +76,7 @@ const onSubmit = async event => {
         ? { phone: formRef[AUTH_FIELD.tel].value }
         : { email: formRef[AUTH_FIELD.email].value }),
       password: formRef[AUTH_FIELD.password].value,
+      nickname: formRef[AUTH_FIELD.email].value.split('@')[0] ?? '',
       currency: 'BRL',
       country: 'BR',
       affiliateTag: searchString.click_id ?? '',
