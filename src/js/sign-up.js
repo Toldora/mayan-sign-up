@@ -144,8 +144,8 @@ const onSubmit = async event => {
       }/auth/autologin/?${stringifiedSearch}`,
     );
   } catch (error) {
-    const emailError = error.response?.data?.error?.fields?.email[0];
-    if (!emailError || emailError === ERROR_MESSAGES.playerExist) {
+    const emailError = error.response?.data?.error?.fields?.email?.[0];
+    if (!emailError || emailError === ERROR_MESSAGES.emailExist) {
       searchString['sign-up'] = true;
       const stringifiedSearch = queryString.stringify(searchString);
 
