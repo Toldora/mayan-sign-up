@@ -1,7 +1,7 @@
 const CHARS = 'abcdefghijklmnopqrstuvwxyz';
 const PASSWORD_LENGTH = 6;
 
-const generatePassword = () => {
+export const generatePassword = () => {
   let password = '';
 
   for (let i = 0; i < PASSWORD_LENGTH; i += 1) {
@@ -11,5 +11,3 @@ const generatePassword = () => {
 
   return password;
 };
-
-export default generatePassword;

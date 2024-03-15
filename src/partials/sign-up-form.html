@@ -36,31 +36,33 @@
       </label>
     </div>
     <div class="sign-up-form__auth-error js-auth-error"></div>
-    <label class="sign-up-form__input-label">
-      <div class="sign-up-form__text-input-label">Senha</div>
-      <div class="sign-up-form__text-input-wrapper">
-        <input
-          class="sign-up-form__text-input"
-          name="password"
-          required
-          placeholder="******"
-          type="password"
-          minlength="6"
-          autocomplete="off"
-        />
-        <button
-          class="sign-up-form__password-input-btn sign-up-form__password-input-btn--pass-hidden js-password-input-btn"
-          type="button"
-          aria-label="Clique aqui para mostrar/ocultar senha"
-        >
-          {{> svg-icon class='sign-up-form__password-btn-icon
-          sign-up-form__password-btn-icon--off' width='20' height='20'
-          name='eye-off' }} {{> svg-icon class='sign-up-form__password-btn-icon
-          sign-up-form__password-btn-icon--on' width='20' height='20'
-          name='eye-on' }}
-        </button>
-      </div>
-    </label>
+    <div class="sign-up-form__auth-inputs sign-up-form__auth-inputs--email">
+      <label class="sign-up-form__input-label">
+        <div class="sign-up-form__text-input-label">Senha</div>
+        <div class="sign-up-form__text-input-wrapper">
+          <input
+            class="sign-up-form__text-input"
+            name="password"
+            placeholder="******"
+            type="password"
+            minlength="6"
+            autocomplete="off"
+          />
+          <button
+            class="sign-up-form__password-input-btn sign-up-form__password-input-btn--pass-hidden js-password-input-btn"
+            type="button"
+            aria-label="Clique aqui para mostrar/ocultar senha"
+          >
+            {{> svg-icon class='sign-up-form__password-btn-icon
+            sign-up-form__password-btn-icon--off' width='20' height='20'
+            name='eye-off' }} {{> svg-icon
+            class='sign-up-form__password-btn-icon
+            sign-up-form__password-btn-icon--on' width='20' height='20'
+            name='eye-on' }}
+          </button>
+        </div>
+      </label>
+    </div>
     <div class="sign-up-form__country-wrapper">
       <div>
         <span>País</span>
