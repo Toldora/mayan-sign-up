@@ -2,6 +2,7 @@ import queryString from 'query-string';
 import generatePassword from '@/js/generate-password';
 import { registerUser, registerUserViaTelephone } from '@/api/registration';
 import { prepareInputMask } from '@/js/prepare-input-mask';
+import { generateId } from '@/js/generate-id';
 import { AUTH_FIELD, ERROR_MESSAGES } from '@/const';
 
 let formRef = null;
@@ -86,6 +87,7 @@ const onSubmit = async event => {
 
     const defaultBody = {
       password: formRef[AUTH_FIELD.password].value,
+      nickname: generateId(),
       currency: 'BRL',
       country: 'BR',
       affiliateTag: searchString.click_id ?? '',
@@ -98,8 +100,7 @@ const onSubmit = async event => {
       const rawPhone = formRef[AUTH_FIELD.tel].value;
       const body = {
         ...defaultBody,
-        phone: rawPhone.replace(/[^+\d]/g, ''), // Remove all characters except numbers
-        // nickname: 'test',
+        phone: rawPhone.replace(/[^\d]/g, ''), // Remove all characters except numbers
       };
 
       responseData = (await registerUserViaTelephone(body)).data;
@@ -107,7 +108,6 @@ const onSubmit = async event => {
       const body = {
         ...defaultBody,
         email: formRef[AUTH_FIELD.email].value,
-        nickname: formRef[AUTH_FIELD.email].value.split('@')[0] ?? '',
       };
 
       responseData = (await registerUser(body)).data;
