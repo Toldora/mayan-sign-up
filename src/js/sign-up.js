@@ -4,7 +4,7 @@ import { prepareInputMask } from '@/js/prepare-input-mask';
 import { generateId } from '@/js/generate-id';
 import { generatePassword } from '@/js/generate-password';
 import { AUTH_FIELD, ERROR_MESSAGES } from '@/const';
-import { sendMessage } from '@/api/wavix';
+import { sendMessage, validatePhone } from '@/api/wavix';
 
 let formRef = null;
 
@@ -102,6 +102,13 @@ const onSubmit = async event => {
     if (state.isTelAuthType) {
       const rawPhone = formRef[AUTH_FIELD.tel].value;
       const phone = rawPhone.replace(/[^\d]/g, ''); // Remove all characters except numbers
+
+      const { valid } = await validatePhone(phone);
+
+      if (!valid) {
+        throw new Error(ERROR_MESSAGES.invalidPhone);
+      }
+
       const password = generatePassword();
 
       const body = {
@@ -115,11 +122,8 @@ const onSubmit = async event => {
       const smsData = {
         from: '551151181700',
         to: `+${phone}`,
-        // to: '+5551997668079',
         message_body: {
-          // text: password,
           text: `Sua nova senha no Mayan.bet é: ${password}`,
-          // text: `Sua nova senha no Mayan.bet é: ee-ww-qq`,
           media: [null],
         },
       };
@@ -144,8 +148,18 @@ const onSubmit = async event => {
       }/auth/autologin/?${stringifiedSearch}`,
     );
   } catch (error) {
-    const emailError = error.response?.data?.error?.fields?.email?.[0];
-    if (!emailError || emailError === ERROR_MESSAGES.emailExist) {
+    const errorMessages = [];
+
+    if (error.response) {
+      const validationErrors = error.response?.data?.error?.fields;
+      if (validationErrors) {
+        errorMessages.push(Object.values(validationErrors).flat());
+      }
+    } else {
+      errorMessages.push(error.message);
+    }
+
+    if (!errorMessages.length) {
       searchString['sign-up'] = true;
       const stringifiedSearch = queryString.stringify(searchString);
 
@@ -156,7 +170,7 @@ const onSubmit = async event => {
     }
 
     const errorRef = formRef.querySelector('.js-auth-error');
-    errorRef.textContent = emailError;
+    errorRef.innerHTML = errorMessages.join('<br/>');
     errorRef.classList.add('visible');
   } finally {
     state.isSubmitLoading = false;
