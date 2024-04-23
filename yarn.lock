@@ -2217,10 +2217,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mayanbet-sdk@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/mayanbet-sdk/-/mayanbet-sdk-1.2.4.tgz#9b20c3b10dcb1c16ad00d119800795ca2539e2de"
-  integrity sha512-6dmJ1SFrn0gPUW3h287t72kykQ65qTY6AUbBI4WRcUx5atbXrhgUTizteTrV9kjsifqdLxUE4IQ6b83VQNOIxQ==
+mayanbet-sdk@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/mayanbet-sdk/-/mayanbet-sdk-1.2.5.tgz#bd38c667372fedbe7f57b7a289c49b26aad3e51c"
+  integrity sha512-cAJHXRtVGxCb4qm8+OyGqix9SWYnhedXtBteY+/OoDiYhozTrU+0wBxtdLieH0aPFuv7NmrGyE+WHWmv3/DZCg==
   dependencies:
     axios "^1.6.8"
     handlebars "^4.7.8"
