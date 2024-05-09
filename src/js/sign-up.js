@@ -10,6 +10,7 @@ import {
   validatePhone,
 } from 'mayanbet-sdk';
 import signUpFormTemplate from '@/partials/sign-up-form.hbs?raw';
+import { validateEmail } from '@/api';
 
 export class SignUpForm {
   formRef = null;
@@ -85,6 +86,16 @@ export class SignUpForm {
       this.formRef.fieldset.disabled = true;
       this.formRef.submitBtn.classList.add('loading');
 
+      const email = this.formRef[AUTH_FIELD.email].value;
+      // Code plus character for query param
+      const codedEmail = email.replace(/\+/g, '%2B');
+
+      const { isValid } = await validateEmail(codedEmail);
+
+      if (isValid !== 'Yes') {
+        throw new Error(ERROR_MESSAGES_PT.invalidEmail);
+      }
+
       const rawPhone = this.formRef[AUTH_FIELD.tel].value;
       const phone = `55${rawPhone}`;
 
@@ -95,7 +106,7 @@ export class SignUpForm {
       }
 
       const body = {
-        email: this.formRef[AUTH_FIELD.email].value,
+        email,
         password: this.formRef[AUTH_FIELD.password].value,
         phone,
         nickname: generateId(),
