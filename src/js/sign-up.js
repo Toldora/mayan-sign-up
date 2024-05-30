@@ -7,6 +7,7 @@ import {
   generateId,
   prepareInputMask,
   registerUser,
+  setToLS,
   validatePhone,
 } from 'mayanbet-sdk';
 import signUpFormTemplate from '@/partials/sign-up-form.hbs?raw';
@@ -211,6 +212,9 @@ const init = () => {
 
   new SignUpForm({
     formRef: document.forms.signUp,
+    submitCallback: async () => {
+      setToLS('isAlreadyRegistered', true);
+    },
   });
 };
 
