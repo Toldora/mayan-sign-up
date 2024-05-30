@@ -1,4 +1,4 @@
-import { SignUpForm, compileSignUpFormMarkup } from 'mayanbet-sdk';
+import { SignUpForm, compileSignUpFormMarkup, setToLS } from 'mayanbet-sdk';
 
 const init = () => {
   const markup = compileSignUpFormMarkup();
@@ -9,6 +9,9 @@ const init = () => {
 
   new SignUpForm({
     formRef: document.forms.signUp,
+    submitCallback: async () => {
+      setToLS('isAlreadyRegistered', true);
+    },
   });
 };
 
