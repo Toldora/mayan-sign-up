@@ -6,6 +6,7 @@ import queryString from 'query-string';
 import { getFromLS } from 'mayanbet-sdk';
 import '@/js/sign-up';
 import useViewportSizes from '@/js/use-viewport-sizes';
+import '@/js/pwa';
 
 useViewportSizes();
 

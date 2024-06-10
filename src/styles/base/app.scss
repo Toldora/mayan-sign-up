@@ -166,3 +166,10 @@ a {
     padding: to-rem(32);
   }
 }
+
+.app_download-btn {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
