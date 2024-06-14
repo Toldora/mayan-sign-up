@@ -1,7 +1,9 @@
 import { SignUpForm, compileSignUpFormMarkup, setToLS } from 'mayanbet-sdk';
 
 const init = () => {
-  const markup = compileSignUpFormMarkup();
+  const markup = compileSignUpFormMarkup({
+    isEmailOnFirstPosition: true,
+  });
 
   const signUpWrapperRef = document.querySelector('.js-sign-up-wrapper');
 
