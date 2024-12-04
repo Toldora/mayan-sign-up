@@ -1,8 +1,4 @@
-import {
-  // SignUpForm,
-  compileSignUpFormMarkup,
-  // setToLS
-} from 'mayanbet-sdk';
+import { SignUpForm, compileSignUpFormMarkup, setToLS } from 'mayanbet-sdk';
 
 const init = () => {
   const markup = compileSignUpFormMarkup({
@@ -13,12 +9,12 @@ const init = () => {
 
   signUpWrapperRef.insertAdjacentHTML('beforeend', markup);
 
-  // new SignUpForm({
-  //   formRef: document.forms.signUp,
-  //   submitCallback: async () => {
-  //     setToLS('isAlreadyRegistered', true);
-  //   },
-  // });
+  new SignUpForm({
+    formRef: document.forms.signUp,
+    submitCallback: async () => {
+      setToLS('isAlreadyRegistered', true);
+    },
+  });
 };
 
 init();
