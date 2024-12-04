@@ -1,18 +1,17 @@
-// import handlebars from 'handlebars';
+import handlebars from 'handlebars';
 import queryString from 'query-string';
 import {
   AUTH_FIELD,
-  compileSignUpFormMarkup,
   ERROR_MESSAGES_EN,
   ERROR_MESSAGES_PT,
   generateId,
   prepareInputMask,
   registerUser,
-  // setToLS,
+  setToLS,
   validateEmail,
   validatePhone,
 } from 'mayanbet-sdk';
-// import signUpFormTemplate from '@/partials/sign-up-form.hbs?raw';
+import signUpFormTemplate from '@/partials/sign-up-form.hbs?raw';
 
 export class SignUpForm {
   formRef = null;
@@ -194,19 +193,18 @@ export class SignUpForm {
 }
 
 const init = () => {
-  // const markup = handlebars.compile(signUpFormTemplate)();
-  const markup = compileSignUpFormMarkup();
+  const markup = handlebars.compile(signUpFormTemplate)();
 
   const signUpWrapperRef = document.querySelector('.js-sign-up-wrapper');
 
   signUpWrapperRef.insertAdjacentHTML('beforeend', markup);
 
-  // new SignUpForm({
-  //   formRef: document.forms.signUp,
-  //   submitCallback: async () => {
-  //     setToLS('isAlreadyRegistered', true);
-  //   },
-  // });
+  new SignUpForm({
+    formRef: document.forms.signUp,
+    submitCallback: async () => {
+      setToLS('isAlreadyRegistered', true);
+    },
+  });
 };
 
 init();
